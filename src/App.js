@@ -1,4 +1,3 @@
-import { Book } from "@material-ui/icons";
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Characters from "./components/Characters";

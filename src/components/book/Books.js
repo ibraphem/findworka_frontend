@@ -66,10 +66,8 @@ const Books = () => {
                       color="textSecondary"
                       component="p"
                     >
-                      {bookDetail.authors.map((author, i) => (
-                        <>
-                          <i key={i}>{author}</i>&nbsp;&nbsp;
-                        </>
+                      {bookDetail.authors.map((author, ind) => (
+                        <i key={ind}>{author}&nbsp;&nbsp;</i>
                       ))}
                     </Typography>
                   </CardContent>
