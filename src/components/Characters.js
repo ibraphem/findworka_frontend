@@ -41,7 +41,6 @@ const useStyles = makeStyles({
 });
 
 const Characters = () => {
-  const [isLoading, setIsLoading] = useState(true);
   const [charp, setcharp] = useState([]);
   const [end, setEnd] = useState(9);
 
@@ -49,7 +48,7 @@ const Characters = () => {
 
   useEffect(() => {
     let mounted = true;
-    setIsLoading(true);
+
     axios
       .get(`https://www.anapioficeandfire.com/api/books/${id}`)
       .then((response) => {

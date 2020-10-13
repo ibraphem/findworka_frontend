@@ -31,7 +31,6 @@ const useStyles = makeStyles({
 
 const BookDetails = () => {
   const [book, setBook] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   const formatDate = (date) => {
     return moment(date).format("MMMM DD YYYY");
@@ -39,13 +38,12 @@ const BookDetails = () => {
 
   useEffect(() => {
     let mounted = true;
-    setIsLoading(true);
+
     axios
       .get(`https://www.anapioficeandfire.com/api/books/${id}`)
       .then((response) => {
         if (mounted) {
           setBook(response.data);
-          setIsLoading(false);
         }
       })
       .catch((err) => {
