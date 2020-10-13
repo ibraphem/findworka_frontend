@@ -117,9 +117,14 @@ const Characters = () => {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Suspendisse malesuada lacus ex, sit amet blandit leo
-                      lobortis eget.
+                      <b>Gender: </b>
+                      {char.gender}
+                      <br />
+                      <b>Father: </b>
+                      {char.father}
+                      <br />
+                      <b>Mother: </b>
+                      {char.mother}
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
