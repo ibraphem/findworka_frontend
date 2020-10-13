@@ -7,11 +7,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import axios from "axios";
 import { Grid, CircularProgress } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
-import moment from "moment";
-import CharacterProperties from "./CharacterProperties";
-import CharProp from "./CharProp";
+
 import BookDetails from "./book/BookDetails";
 import LoadMore from "./LoadMore";
 
@@ -44,18 +41,10 @@ const useStyles = makeStyles({
 });
 
 const Characters = () => {
-  const [book, setBook] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [character, setCharacter] = useState([]);
-  const [characterProperties, setCharacterProperties] = useState([]);
   const [charp, setcharp] = useState([]);
   const [end, setEnd] = useState(9);
 
-  const formatDate = (date) => {
-    return moment(date).format("MMMM DD YYYY");
-  };
-
-  let res_arr = [];
   let res = [];
 
   useEffect(() => {
