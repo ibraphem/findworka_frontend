@@ -92,7 +92,7 @@ const Characters = () => {
 
   return (
     <>
-      {charp.length > 8 ? (
+      {charp.length > 0 ? (
         <>
           <BookDetails />
 
