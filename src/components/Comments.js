@@ -55,7 +55,7 @@ const Comments = () => {
     setIsLoading(true);
     axios
       .get(`https://test.plantlife.com.ng/api/comment/${id}`, {
-        headers: { "Access-Control-Allow-Origin": "*" },
+        headers: { "Accss-eControl-Allow-Origin": "*" },
       })
       .then((response) => {
         if (mounted) {
@@ -84,10 +84,10 @@ const Comments = () => {
 
   const submit = (e) => {
     e.preventDefault();
-    const formData = JSON.stringify({
+    const formData = {
       id: id,
       write: write,
-    });
+    };
 
     console.log(formData);
 
@@ -95,7 +95,9 @@ const Comments = () => {
 
     setIsLoading(true);
     axios
-      .post("https://test.plantlife.com.ng/api/store/comment", formData)
+      .post(
+        `https://test.plantlife.com.ng/api/comment/store/${formData.id}/${formData.write}`
+      )
       .then((response) => {
         if (mounted) {
           console.log(response.data);
@@ -150,7 +152,7 @@ const Comments = () => {
                       <span className={classes.commenter}>Anonymous</span>
 
                       <span className={classes.date}>
-                        {moment(com.created_at, "YYYYMMDD").fromNow()}
+                        {moment(com.post_time, "mm").fromNow()}
                       </span>
                       <br />
                       <br />
