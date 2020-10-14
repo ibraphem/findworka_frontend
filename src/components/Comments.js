@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     paddingLeft: "30px",
   },
   textArea: {
-    width: "420px",
+    minWidth: "300px",
   },
   commenter: {
     float: "left",
@@ -118,9 +118,9 @@ const Comments = () => {
   //console.log(comm);
   return (
     <>
+      <BookDetails />
       {!isLoading ? (
         <>
-          <BookDetails />
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}></Grid>
             <Grid item xs={12} sm={4}>

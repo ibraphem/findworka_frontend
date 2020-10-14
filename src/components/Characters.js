@@ -92,10 +92,9 @@ const Characters = () => {
 
   return (
     <>
-      {charp.length > 8 ? (
+      <BookDetails />
+      {charp.length > 0 ? (
         <>
-          <BookDetails />
-
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}></Grid>
             <Grid item xs={12} sm={4}>

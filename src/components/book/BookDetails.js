@@ -31,6 +31,7 @@ const useStyles = makeStyles({
 
 const BookDetails = () => {
   const [book, setBook] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const formatDate = (date) => {
     return moment(date).format("MMMM DD YYYY");
@@ -47,6 +48,7 @@ const BookDetails = () => {
       .then((response) => {
         if (mounted) {
           setBook(response.data);
+          setIsLoading(false);
         }
       })
       .catch((err) => {
@@ -61,29 +63,50 @@ const BookDetails = () => {
   const classes = useStyles();
 
   return (
-    <Card>
-      <Grid container spacing={4} className={classes.bookContainer}>
-        <Grid item xs={12} sm={7}>
-          <h1 className={classes.bookTitle}>{book.name}</h1>
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Paper className={classes.paper}>
-            <Typography gutterBottom variant="h6" component="h6">
-              ISBN: <i>{book.isbn}</i>
-            </Typography>
-            <Typography gutterBottom variant="h6" padding="5px" component="p">
-              PUBLISHER: <i>{book.publisher}</i>
-            </Typography>
-            <Typography gutterBottom variant="h6" padding="5px" component="h6">
-              COUNTRY: <i>{book.country}</i>
-            </Typography>
-            <Typography gutterBottom variant="h6" padding="5px" component="h6">
-              RELEASED DATE: <i>{formatDate(book.released)}</i>
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
-    </Card>
+    <>
+      {!isLoading ? (
+        <Card>
+          <Grid container spacing={4} className={classes.bookContainer}>
+            <Grid item xs={12} sm={7}>
+              <h1 className={classes.bookTitle}>{book.name}</h1>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Paper className={classes.paper}>
+                <Typography gutterBottom variant="h6" component="h6">
+                  ISBN: <i>{book.isbn}</i>
+                </Typography>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  padding="5px"
+                  component="p"
+                >
+                  PUBLISHER: <i>{book.publisher}</i>
+                </Typography>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  padding="5px"
+                  component="h6"
+                >
+                  COUNTRY: <i>{book.country}</i>
+                </Typography>
+                <Typography
+                  gutterBottom
+                  variant="h6"
+                  padding="5px"
+                  component="h6"
+                >
+                  RELEASED DATE: <i>{formatDate(book.released)}</i>
+                </Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Card>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 
