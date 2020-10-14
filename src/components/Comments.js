@@ -93,23 +93,20 @@ const Comments = () => {
 
     let mounted = true;
 
-    if (formData.write === undefined || formData.write.length < 1) {
-      alert("Please write your comment before submit.  ");
-    } else {
-      setIsLoading(true);
-      axios
-        .post("https://test.plantlife.com.ng/api/store/comment", formData)
-        .then((response) => {
-          if (mounted) {
-            console.log(response.data);
-            setComm(response.data);
-            setIsLoading(false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
+    setIsLoading(true);
+    axios
+      .post("https://test.plantlife.com.ng/api/store/comment", formData)
+      .then((response) => {
+        if (mounted) {
+          console.log(response.data);
+          setComm(response.data);
+          setIsLoading(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     return () => {
       mounted = false;
     };
@@ -137,6 +134,7 @@ const Comments = () => {
                   placeholder="What do you think about this book?"
                   className={classes.textArea}
                   onChange={handleWriterChange}
+                  required
                 />
                 <br />
                 <Button variant="contained" color="primary" type="submit">
