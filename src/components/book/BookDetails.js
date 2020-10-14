@@ -36,8 +36,11 @@ const BookDetails = () => {
     return moment(date).format("MMMM DD YYYY");
   };
 
+  let params = useParams();
+
   useEffect(() => {
     let mounted = true;
+    let { id } = params;
 
     axios
       .get(`https://www.anapioficeandfire.com/api/books/${id}`)
@@ -53,10 +56,9 @@ const BookDetails = () => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [params]);
 
   const classes = useStyles();
-  let { id } = useParams();
 
   return (
     <Card>

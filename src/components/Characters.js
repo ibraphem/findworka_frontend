@@ -44,10 +44,12 @@ const Characters = () => {
   const [charp, setcharp] = useState([]);
   const [end, setEnd] = useState(9);
 
-  let res = [];
+  let params = useParams();
 
   useEffect(() => {
     let mounted = true;
+    let res = [];
+    let { id } = params;
 
     axios
       .get(`https://www.anapioficeandfire.com/api/books/${id}`)
@@ -65,9 +67,10 @@ const Characters = () => {
           }
         }
 
-        const timer = setTimeout(() => {
+        setTimeout(() => {
           setcharp(res);
         }, 1000);
+        //  console.log(timer);
       })
       .catch((err) => {
         console.log(err);
@@ -76,7 +79,7 @@ const Characters = () => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [params]);
 
   const showMore = () => {
     let newEnd = end + 9;
@@ -85,12 +88,11 @@ const Characters = () => {
 
   console.log(charp);
 
-  let { id } = useParams();
   const classes = useStyles();
 
   return (
     <>
-      {charp.length > 0 ? (
+      {charp.length > 8 ? (
         <>
           <BookDetails />
 

@@ -47,8 +47,11 @@ const Comments = () => {
   const [end, setEnd] = useState(5);
   const [write, setWrite] = useState("");
 
+  let params = useParams();
+
   useEffect(() => {
     let mounted = true;
+    let { id } = params;
     setIsLoading(true);
     axios
       .get(`http://test.plantlife.com.ng/api/comment/${id}`)
@@ -65,7 +68,7 @@ const Comments = () => {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [params]);
 
   const handleWriterChange = (e) => {
     setWrite(e.target.value);
