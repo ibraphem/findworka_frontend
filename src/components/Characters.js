@@ -59,7 +59,7 @@ const Characters = () => {
             axios
               .get(`${response.data.characters[i]}`)
               .then((response) => {
-                res.unshift(response.data);
+                res.push(response.data);
               })
               .catch((err) => {
                 console.log(err);
