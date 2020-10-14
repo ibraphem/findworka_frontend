@@ -54,7 +54,9 @@ const Comments = () => {
     let { id } = params;
     setIsLoading(true);
     axios
-      .get(`http://test.plantlife.com.ng/api/comment/${id}`)
+      .get(`http://test.plantlife.com.ng/api/comment/${id}`, {
+        headers: { "Access-Control-Allow-Origin": "*" },
+      })
       .then((response) => {
         if (mounted) {
           setComm(response.data);
