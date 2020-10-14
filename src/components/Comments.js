@@ -10,7 +10,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 import Button from "@material-ui/core/Button";
 import LoadMore from "./LoadMore";
-import moment from "moment";
+import TimeAgo from "./TimeAgo";
 
 const useStyles = makeStyles({
   characterTitle: {
@@ -37,7 +37,7 @@ const useStyles = makeStyles({
     left: "50%",
   },
 });
-
+//console.log(moment("20120620", "YYYYMMDD").fromNow());
 const Comments = () => {
   let { id } = useParams();
   const classes = useStyles();
@@ -152,7 +152,7 @@ const Comments = () => {
                       <span className={classes.commenter}>Anonymous</span>
 
                       <span className={classes.date}>
-                        {moment(com.post_time, "mm").fromNow()}
+                        <TimeAgo date={com.post_time} />
                       </span>
                       <br />
                       <br />
