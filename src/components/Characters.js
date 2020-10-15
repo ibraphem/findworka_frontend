@@ -11,6 +11,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import BookDetails from "./book/BookDetails";
 import LoadMore from "./LoadMore";
+import Search from "./Search";
 
 const useStyles = makeStyles({
   bookContainer: {
@@ -44,6 +45,7 @@ const Characters = () => {
   const [charp, setcharp] = useState([]);
   const [end, setEnd] = useState(9);
   const [isLoading, setisLoading] = useState(true);
+  //const [filtered, setFiltered] = useState([]);
 
   let params = useParams();
 
@@ -88,6 +90,18 @@ const Characters = () => {
     setEnd(newEnd);
   };
 
+  //  console.log(charp);
+
+  const getKeyWord = (event) => {
+    //  console.log(event.target.value);
+    let keyword = event.target.value.toLowerCase();
+    let filter = charp.filter((item) => {
+      let name = item.name.toLowerCase();
+      return name.indexOf(keyword) > -1;
+    });
+    setcharp(filter);
+  };
+
   console.log(charp);
 
   const classes = useStyles();
@@ -100,7 +114,8 @@ const Characters = () => {
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}></Grid>
             <Grid item xs={12} sm={4}>
-              <h1 className={classes.characterTitle}>CHARACTERS</h1>
+              <h2 className={classes.characterTitle}>CHARACTERS</h2>
+              <Search keyword={getKeyWord} />
             </Grid>
             <Grid item xs={12} sm={4}></Grid>
           </Grid>
