@@ -39,6 +39,11 @@ const useStyles = makeStyles({
     top: "50%",
     left: "50%",
   },
+
+  search: {
+    paddingLeft: "30px",
+    paddingRight: "30px",
+  },
 });
 
 const Characters = () => {
@@ -114,8 +119,13 @@ const Characters = () => {
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}></Grid>
             <Grid item xs={12} sm={4}>
-              <h2 className={classes.characterTitle}>CHARACTERS</h2>
-              <Search keyword={getKeyWord} />
+              <h1 className={classes.characterTitle}>CHARACTERS</h1>
+            </Grid>
+          </Grid>
+          <Grid container spacing={4} className={classes.characterContainer}>
+            <Grid item xs={12} sm={4}></Grid>
+            <Grid item xs={12} sm={4}>
+              <Search keyword={getKeyWord} className={classes.search} />
             </Grid>
             <Grid item xs={12} sm={4}></Grid>
           </Grid>
