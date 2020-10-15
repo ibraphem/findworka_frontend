@@ -149,7 +149,9 @@ const Comments = () => {
                 {comm.slice(0, end).map((com) => (
                   <CardActionArea key={com.id}>
                     <CardContent>
-                      <span className={classes.commenter}>Anonymous</span>
+                      <span className={classes.commenter}>
+                        Anonymous (Public IP: {com.ip})
+                      </span>
 
                       <span className={classes.date}>
                         <TimeAgo date={com.post_time} />
