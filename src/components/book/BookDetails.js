@@ -5,6 +5,8 @@ import { Grid, Paper } from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
+
+import { Link } from "react-router-dom";
 import moment from "moment";
 
 const useStyles = makeStyles({
@@ -26,6 +28,9 @@ const useStyles = makeStyles({
   characterContainer: {
     paddingRight: "30px",
     paddingLeft: "30px",
+  },
+  link: {
+    color: "#fff",
   },
 });
 
@@ -69,6 +74,9 @@ const BookDetails = () => {
           <Grid container spacing={4} className={classes.bookContainer}>
             <Grid item xs={12} sm={7}>
               <h1 className={classes.bookTitle}>{book.name}</h1>
+              <Link to="/" className={classes.link}>
+                Back to Books
+              </Link>
             </Grid>
             <Grid item xs={12} sm={4}>
               <Paper className={classes.paper}>

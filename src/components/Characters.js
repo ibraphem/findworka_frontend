@@ -43,6 +43,7 @@ const useStyles = makeStyles({
 const Characters = () => {
   const [charp, setcharp] = useState([]);
   const [end, setEnd] = useState(9);
+  const [isLoading, setisLoading] = useState(true);
 
   let params = useParams();
 
@@ -69,6 +70,7 @@ const Characters = () => {
 
         setTimeout(() => {
           setcharp(res);
+          setisLoading(false);
         }, 1000);
         //  console.log(timer);
       })
@@ -93,7 +95,7 @@ const Characters = () => {
   return (
     <>
       <BookDetails />
-      {charp.length > 0 ? (
+      {!isLoading ? (
         <>
           <Grid container spacing={4}>
             <Grid item xs={12} sm={4}></Grid>
@@ -102,42 +104,53 @@ const Characters = () => {
             </Grid>
             <Grid item xs={12} sm={4}></Grid>
           </Grid>
-
-          <Grid container spacing={4} className={classes.characterContainer}>
-            {charp.slice(0, end).map((char, index) => (
-              <Grid item xs={12} sm={4} key={index}>
-                <Accordion>
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    id="panel1a-header"
-                  >
-                    <Typography className={classes.heading}>
-                      {char.name}
-                    </Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <Typography>
-                      <b>Gender: </b>
-                      {char.gender}
-                      <br />
-                      <b>Father: </b>
-                      {char.father}
-                      <br />
-                      <b>Mother: </b>
-                      {char.mother}
-                    </Typography>
-                  </AccordionDetails>
-                </Accordion>
+          {charp.length > 0 ? (
+            <Grid container spacing={4} className={classes.characterContainer}>
+              {charp.slice(0, end).map((char, index) => (
+                <Grid item xs={12} sm={4} key={index}>
+                  <Accordion>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      id="panel1a-header"
+                    >
+                      <Typography className={classes.heading}>
+                        {char.name}
+                      </Typography>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <Typography>
+                        <b>Gender: </b>
+                        {char.gender}
+                        <br />
+                        <b>Father: </b>
+                        {char.father}
+                        <br />
+                        <b>Mother: </b>
+                        {char.mother}
+                      </Typography>
+                    </AccordionDetails>
+                  </Accordion>
+                </Grid>
+              ))}
+              <Grid item xs={12} sm={4}></Grid>
+              <Grid item xs={12} sm={4}>
+                <LoadMore click={showMore} />
               </Grid>
-            ))}
-            <Grid item xs={12} sm={4}></Grid>
-            <Grid item xs={12} sm={4}>
-              <LoadMore click={showMore} />
-            </Grid>
 
-            <Grid item xs={12} sm={4}></Grid>
-          </Grid>
+              <Grid item xs={12} sm={4}></Grid>
+            </Grid>
+          ) : (
+            <Grid container spacing={4}>
+              <Grid item xs={12} sm={4}></Grid>
+              <Grid item xs={12} sm={4}>
+                <h3 className={classes.characterTitle}>
+                  No Character was found for this book
+                </h3>
+              </Grid>
+              <Grid item xs={12} sm={4}></Grid>
+            </Grid>
+          )}
         </>
       ) : (
         <CircularProgress className={classes.progress} />
